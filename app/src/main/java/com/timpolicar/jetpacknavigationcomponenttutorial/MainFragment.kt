@@ -39,7 +39,7 @@ class MainFragment : Fragment(), View.OnClickListener {
         //!! = converts any value to a non-null type and throws an exception if the value is null
         when(v!!.id){
             R.id.view_transactions_btn -> navController!!.navigate(R.id.action_mainFragment_to_viewTransactionFragment) //if that button is clicked move to viewTransactionFragment
-            R.id.send_money_btn -> navController!!.navigate(R.id.chooseRecipientFragment)
+            R.id.send_money_btn -> navController!!.navigate(R.id.action_mainFragment_to_chooseRecipientFragment)
             R.id.view_balance_btn -> navController!!.navigate(R.id.action_mainFragment_to_viewBalanceFragment)
         }
     }

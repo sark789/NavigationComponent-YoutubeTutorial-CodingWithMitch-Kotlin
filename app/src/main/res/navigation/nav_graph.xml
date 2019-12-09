@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- pop animations: pop in the backstack, navigation backwards, the normal ones are for navigation forward. One animation is going into view the other out of view! that is why we are using normal ones and the pop-->
+<!-- if we have a login screen and when we log in we change to next fragment. if we press back button we dont want to get to login screen again we want to exit the app then we use popUpto and popUpToInclusive
+example: app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"
+-->
+<!-- argument: is for passing the information between fragments. you create argument on the RECIEVING fragment-->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,13 +18,26 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_chooseRecipientFragment"
-            app:destination="@id/chooseRecipientFragment" />
+            app:destination="@id/chooseRecipientFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
         <action
             android:id="@+id/action_mainFragment_to_viewTransactionFragment"
-            app:destination="@id/viewTransactionFragment" />
+            app:destination="@id/viewTransactionFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
         <action
             android:id="@+id/action_mainFragment_to_viewBalanceFragment"
-            app:destination="@id/viewBalanceFragment" />
+            app:destination="@id/viewBalanceFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
     </fragment>
     <fragment
         android:id="@+id/chooseRecipientFragment"
@@ -27,16 +46,26 @@
         tools:layout="@layout/fragment_choose_recipient" >
         <action
             android:id="@+id/action_chooseRecipientFragment_to_specifyAmountFragment"
-            app:destination="@id/specifyAmountFragment" />
+            app:destination="@id/specifyAmountFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/specifyAmountFragment"
         android:name="com.timpolicar.jetpacknavigationcomponenttutorial.SpecifyAmountFragment"
         android:label="fragment_specify_amount"
         tools:layout="@layout/fragment_specify_amount" >
+        <argument android:name="recipient"
+                  android:defaultValue="None" />
         <action
             android:id="@+id/action_specifyAmountFragment_to_confirmationFragment"
-            app:destination="@id/confirmationFragment" />
+            app:destination="@id/confirmationFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/viewBalanceFragment"
@@ -52,5 +81,12 @@
         android:id="@+id/confirmationFragment"
         android:name="com.timpolicar.jetpacknavigationcomponenttutorial.ConfirmationFragment"
         android:label="fragment_confirmation2"
-        tools:layout="@layout/fragment_confirmation2" />
+        tools:layout="@layout/fragment_confirmation2" >
+
+        <argument android:name="recipient"
+        android:defaultValue="None" />
+        <argument android:name="amount"
+                  app:argType="com.timpolicar.jetpacknavigationcomponenttutorial.Money"/>
+
+        </fragment>
 </navigation>
